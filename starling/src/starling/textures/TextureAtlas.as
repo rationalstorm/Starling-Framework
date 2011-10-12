@@ -12,8 +12,9 @@ package starling.textures
 {
     import flash.geom.Rectangle;
     import flash.utils.Dictionary;
+    import flash.utils.getQualifiedClassName;
 
-    /** A texture atlas is a collection of many smaller textures in one big image. This class
+/** A texture atlas is a collection of many smaller textures in one big image. This class
      *  is used to access textures from such an atlas.
      *  
      *  <p>Using a texture atlas for your textures solves two problems:</p>
@@ -97,7 +98,13 @@ package starling.textures
                 addRegion(name, region, frame);
             }
         }
-        
+
+        /** Retrieves all textures for a class. Returns <code>null</code> if it is not found. */
+        public function getTexturesByClass(assetClass:Class):Vector.<Texture>
+        {
+            return getTextures(getQualifiedClassName(assetClass));
+        }
+
         /** Retrieves a subtexture by name. Returns <code>null</code> if it is not found. */
         public function getTexture(name:String):Texture
         {
